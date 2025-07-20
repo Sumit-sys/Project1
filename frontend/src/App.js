@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import AvailableRooms from './components/AvailableRooms';
+import BookingForm from './components/BookingForm';
+import BookingList from './components/BookingList';
 
 function App() {
+  const [selected, setSelected] = useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hotel Booking App</h1>
+      {!selected && <AvailableRooms onSelect={(room, checkIn, checkOut) => setSelected({ room, checkIn, checkOut })} />}
+      {selected && (
+        <BookingForm
+          room={selected.room}
+          checkIn={selected.checkIn}
+          checkOut={selected.checkOut}
+          onComplete={() => setSelected(null)}
+        />
+      )}
+      <hr />
+      <BookingList />
     </div>
   );
 }
