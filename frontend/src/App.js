@@ -1,27 +1,21 @@
-import React, { useState } from 'react';
-import AvailableRooms from './components/AvailableRooms';
-import BookingForm from './components/BookingForm';
-import BookingList from './components/BookingList';
+
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Gallery from './pages/Gallery';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Payment from './pages/Payment';
 
 function App() {
-  const [selected, setSelected] = useState(null);
-
   return (
-    <div className="App">
-      <h1>Hotel Booking App</h1>
-      {!selected && <AvailableRooms onSelect={(room, checkIn, checkOut) => setSelected({ room, checkIn, checkOut })} />}
-      {selected && (
-        <BookingForm
-          room={selected.room}
-          checkIn={selected.checkIn}
-          checkOut={selected.checkOut}
-          onComplete={() => setSelected(null)}
-        />
-      )}
-      <hr />
-      <BookingList />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Gallery />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/payment" element={<Payment />} />
+      </Routes>
+    </Router>
   );
 }
-
 export default App;
