@@ -61,7 +61,7 @@ const Gallery = () => {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>Welcome to Our Hotel</h2>
+      <h2 style={styles.title}>Welcome to Our Hotel ITC</h2>
       <div style={styles.galleryGrid}>
         {rooms.map((room, index) => (
           <div
